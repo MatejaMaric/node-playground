@@ -1,13 +1,9 @@
-const http = require('http');
+const express = require('express');
 
-const requestHandler = (req, res) => {
-  console.log(`${req.method} ${req.url}`);
+const app = express();
 
-  res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-  res.end('<h1>lol</h1>');
-};
+app.get('/', (req, res) => {
+  res.send('<h1>lol</h1>');
+});
 
-const onServerStart = () => console.log('Server started on port 8080.');
-
-const server = http.createServer(requestHandler);
-server.listen(8080, onServerStart);
+app.listen(8080, () => console.log('Server started on port 8080.'));
