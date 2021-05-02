@@ -1,3 +1,14 @@
 <div class="container">
-  <h1>{{ title }}</h1>
+  <h1 class="mt-2">{{ title }}</h1>
+  <form action="/new-post" method="post" accept-charset="utf-8">
+    <div class="mb-3">
+      <label for="post_title" class="form-label">Post title:</label>
+      <input name="title" type="text" class="form-control" id="post_title" required>
+    </div>
+    <div class="mb-3">
+      <label for="post_text" class="form-label">Post text:</label>
+      <textarea name="text" class="form-control" id="post_text" rows="3" required></textarea>
+    </div>
+    <button type="submit" class="btn">Submit</button>
+  </form>
 </div>
