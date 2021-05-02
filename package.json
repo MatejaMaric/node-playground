@@ -4,12 +4,16 @@
   "description": "I use this repository to play with Node.js.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "watch": "nodemon index.js"
   },
   "author": "Mateja Maric",
   "license": "GPL-3.0",
   "dependencies": {
     "express": "^4.17.1",
     "express-handlebars": "^5.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
