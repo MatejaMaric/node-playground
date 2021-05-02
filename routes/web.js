@@ -1,10 +1,14 @@
 const express = require('express');
 const router = express.Router();
+const Post = require('../models/post');
 
 router.get('/', (req, res) => {
-  res.render('home', {
-    title: 'Home Page',
-    home: true
+  Post.find().lean().exec((err, posts) => {
+    res.render('home', {
+      title: 'Home Page',
+      home: true,
+      posts: posts
+    });
   });
 });
 
@@ -16,8 +20,11 @@ router.get('/new-post', (req, res) => {
 });
 
 router.post('/new-post', (req, res) => {
-  console.log(req.body);
-  res.redirect('/');
+  const newPost = new Post({
+    'title': req.body.title,
+    'text': req.body.text
+  });
+  newPost.save().then(() => res.redirect('/'));
 });
 
 module.exports = router;
