@@ -25,6 +25,10 @@ module.exports = {
       'text': req.body.text
     });
     newPost.save().then(() => res.redirect('/'));
+  },
+
+  destroy(req, res) {
+    Post.findByIdAndRemove(req.params.id).then(() => res.redirect('/'));
   }
 
 };

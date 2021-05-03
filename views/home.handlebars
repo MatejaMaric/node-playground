@@ -2,7 +2,7 @@
   <h1 class="mt-2">Posts</h1>
 
   {{#each posts}}
-  <div class="card mt-3">
+  <div class="card mb-3">
     <div class="card-header">
       {{this.title}}
     </div>
@@ -10,6 +10,7 @@
       <div class="card-text">
         {{this.text}}
       </div>
+      <a href="/remove-post/{{this._id}}" class="badge float-end">Remove</a>
     </div>
   </div>
   {{/each}}
