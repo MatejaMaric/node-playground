@@ -4,7 +4,11 @@ const mongoose = require('mongoose');
 const webRoutes = require('./routes/web');
 
 const app = express();
-mongoose.connect('mongodb://localhost/playground_db', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb://localhost/playground_db', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false
+});
 
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
