@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const bcrypt = require('bcryptjs');
 
 module.exports = {
 
@@ -8,7 +9,7 @@ module.exports = {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         email: req.body.email,
-        password: req.body.password
+        password: bcrypt.hashSync(req.body.password)
       });
       newUser.save().then(() => {
         req.flash('msg', 'You successfully registered.');
