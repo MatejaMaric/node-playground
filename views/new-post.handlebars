@@ -7,8 +7,14 @@
     </div>
     <div class="mb-3">
       <label for="post_text" class="form-label">Post text:</label>
-      <textarea name="text" class="form-control" id="post_text" rows="3" required></textarea>
+      <textarea name="text" class="form-control" id="post_text"></textarea>
     </div>
     <button type="submit" class="btn">Submit</button>
   </form>
 </div>
+<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
+<script>
+ClassicEditor
+  .create(document.querySelector('#post_text'))
+  .catch(error => console.error(error));
+</script>
