@@ -1,10 +1,12 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
+require('dotenv').config();
+
 const webRoutes = require('./routes/web');
 
 const app = express();
-mongoose.connect('mongodb://localhost/playground_db', {
+mongoose.connect(process.env.DB_CONN, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false
