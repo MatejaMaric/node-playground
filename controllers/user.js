@@ -22,12 +22,8 @@ module.exports = {
     }
   },
 
-  login(req, res) {
-    console.log(req.body);
-    res.redirect('/login');
-  },
-
   logout(req, res) {
+    req.logout();
     res.redirect('/');
   },
 

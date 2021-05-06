@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoSessionStore = require('connect-mongo');
 const flash = require('connect-flash');
+const passport = require('passport');
 require('dotenv').config();
 
 const webRoutes = require('./routes/web');
@@ -36,6 +37,10 @@ app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 
 app.use(express.urlencoded({extended: false}));
+
+require('./config/passport');
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', webRoutes);
 
