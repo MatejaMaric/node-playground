@@ -12,8 +12,7 @@ module.exports = {
         password: bcrypt.hashSync(req.body.password)
       });
       newUser.save().then(() => {
-        req.flash('msg', 'You successfully registered.');
-        res.redirect('/login');
+        req.login(newUser, () => res.redirect('/new-post'));
       });
     }
     else {
