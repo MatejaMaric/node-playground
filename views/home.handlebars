@@ -10,7 +10,9 @@
       <div class="card-text">
         {{{this.text}}}
       </div>
-      <a href="/remove-post/{{this._id}}" class="badge float-end">Remove</a>
+      {{#if auth}}
+        <a href="/remove-post/{{this._id}}" class="badge float-end">Remove</a>
+      {{/if}}
     </div>
   </div>
   {{/each}}

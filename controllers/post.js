@@ -6,6 +6,7 @@ module.exports = {
     Post.find().lean().exec((err, posts) => {
       res.render('home', {
         title: 'Home Page',
+        auth: req.isAuthenticated(),
         home: true,
         posts: posts
       });
@@ -15,6 +16,7 @@ module.exports = {
   create(req, res) {
     res.render('new-post', {
       title: 'Make A New Post',
+      auth: req.isAuthenticated(),
       newPost: true
     });
   },

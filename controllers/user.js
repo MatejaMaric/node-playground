@@ -29,6 +29,7 @@ module.exports = {
   registerView(req, res) {
     res.render('register', {
       title: 'Register',
+      auth: req.isAuthenticated(),
       register: true,
       msg: req.flash('msg')
     });
@@ -37,6 +38,7 @@ module.exports = {
   loginView(req, res) {
     res.render('login', {
       title: 'Login',
+      auth: req.isAuthenticated(),
       login: true,
       msg: req.flash('msg')
     });
