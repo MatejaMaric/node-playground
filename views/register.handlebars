@@ -1,5 +1,8 @@
 <div class="container">
   <h1 class="mt-2">{{ title }}</h1>
+  {{#if msg}}
+  <div class="alert alert-warning" role="alert">{{msg}}</div>
+  {{/if}}
   <form action="/register" method="post" accept-charset="utf-8">
     <div class="mb-3">
       <label for="firstname" class="form-label">First name:</label>

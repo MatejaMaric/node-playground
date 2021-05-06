@@ -1,5 +1,8 @@
 <div class="container">
   <h1 class="mt-2">{{ title }}</h1>
+  {{#if msg}}
+  <div class="alert alert-success" role="alert">{{msg}}</div>
+  {{/if}}
   <form action="/login" method="post" accept-charset="utf-8">
     <div class="mb-3">
       <label for="email" class="form-label">Email:</label>
@@ -7,7 +10,7 @@
     </div>
     <div class="mb-3">
       <label for="password" class="form-label">Password:</label>
-      <input name="password" class="form-control" id="password" required></input>
+      <input name="password" type="password" class="form-control" id="password" required></input>
     </div>
     <button type="submit" class="btn">Login</button>
   </form>
