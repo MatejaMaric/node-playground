@@ -3,6 +3,7 @@ const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoSessionStore = require('connect-mongo');
+const flash = require('connect-flash');
 require('dotenv').config();
 
 const webRoutes = require('./routes/web');
@@ -26,6 +27,8 @@ app.use(session({
     maxAge: 1000 * 60 * 60 * 24 // 1 day
   }
 }));
+
+app.use(flash());
 
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
