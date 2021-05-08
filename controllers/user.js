@@ -11,9 +11,15 @@ module.exports = {
         email: req.body.email,
         password: bcrypt.hashSync(req.body.password)
       });
-      newUser.save().then(() => {
-        req.login(newUser, () => res.redirect('/new-post'));
-      });
+      newUser.save()
+        .then(() => {
+          req.login(newUser, () => res.redirect('/new-post'));
+        })
+        .catch(err => {
+          console.log(err);
+          req.flash('msg', 'Validation errors...');
+          req.redirect('/register');
+        });
     }
     else {
       req.flash('msg', 'Validation errors...');

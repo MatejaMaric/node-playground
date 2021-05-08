@@ -4,6 +4,7 @@ module.exports = {
 
   index(req, res) {
     Post.find().lean().exec((err, posts) => {
+      if (err) console.log(err);
       res.render('home', {
         title: 'Home Page',
         auth: req.isAuthenticated(),
@@ -26,11 +27,19 @@ module.exports = {
       'title': req.body.title,
       'text': req.body.text
     });
-    newPost.save().then(() => res.redirect('/'));
+    newPost.save()
+      .then(() => res.redirect('/'))
+      .catch(err => {
+        console.log(err);
+        res.redirect('/new-post');
+      });
   },
 
   destroy(req, res) {
-    Post.findByIdAndRemove(req.params.id).then(() => res.redirect('/'));
+    Post.findByIdAndRemove(req.params.id, (err, post) => {
+      if (err) console.log(err);
+      res.redirect('/');
+    });
   }
 
 };
