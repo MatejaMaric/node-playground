@@ -18,7 +18,7 @@ module.exports = {
         .catch(err => {
           console.log(err);
           req.flash('msg', 'Validation errors...');
-          req.redirect('/register');
+          res.redirect('/register');
         });
     }
     else {
