@@ -3,11 +3,15 @@
   <form action="/new-post" method="post" accept-charset="utf-8">
     <div class="mb-3">
       <label for="post_title" class="form-label">Post title:</label>
-      <input name="title" type="text" class="form-control" id="post_title" required>
+      <input name="title" type="text" class="form-control" id="post_title"
+        value="{{oldForm.values.title}}" required>
     </div>
     <div class="mb-3">
       <label for="post_text" class="form-label">Post text:</label>
       <textarea name="text" class="form-control" id="post_text"></textarea>
+      {{#if oldForm.errors.text}}
+        <div class="invalid-feedback d-block">{{oldForm.errors.text}}</div>
+      {{/if}}
     </div>
     <button type="submit" class="btn">Submit</button>
   </form>

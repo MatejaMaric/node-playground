@@ -30,7 +30,7 @@ module.exports = {
     newPost.save()
       .then(() => res.redirect('/'))
       .catch(err => {
-        console.log(err);
+        req.setOldForm(err);
         res.redirect('/new-post');
       });
   },

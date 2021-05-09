@@ -7,6 +7,8 @@ const flash = require('connect-flash');
 const passport = require('passport');
 require('dotenv').config();
 
+const oldForm = require('./utils/middleware/oldForm');
+
 const webRoutes = require('./routes/web');
 
 const app = express();
@@ -41,6 +43,8 @@ app.use(express.urlencoded({extended: false}));
 require('./config/passport');
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(oldForm);
 
 app.use('/', webRoutes);
 
