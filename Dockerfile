@@ -7,12 +7,12 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-USER node
-
 RUN npm clean-install --only=production
 
 COPY . .
 
 EXPOSE ${PORT}
+
+USER node
 
 CMD [ "node", "index.js" ]
