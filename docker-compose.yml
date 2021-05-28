@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    container_name: node-playground-server
+    depends_on:
+      - db
+    networks:
+      - node-playground-network
+    ports:
+      - "3000:8080"
+    restart: always
+    env_file: .env
+    environment:
+      DB_CONN: mongodb://db/playground_db
+
+  db:
+    image: mongo:4.4
+    container_name: node-playground-db
+    volumes:
+      - node-playground-db-data:/data/db
+    networks:
+      - node-playground-network
+    expose:
+      - "27017"
+    restart: always
+
+volumes:
+  node-playground-db-data: {}
+
+networks:
+  node-playground-network:
+    driver: bridge
