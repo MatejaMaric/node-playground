@@ -5,7 +5,7 @@ const session = require('express-session');
 const MongoSessionStore = require('connect-mongo');
 const flash = require('connect-flash');
 const passport = require('passport');
-require('dotenv').config();
+const {port, mongoUrl, masterKey} = require("./config/env")
 
 const oldForm = require('./utils/middleware/oldForm');
 
@@ -13,18 +13,18 @@ const webRoutes = require('./routes/web');
 
 const app = express();
 
-mongoose.connect(process.env.DB_CONN, {
+mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false
 });
 
 app.use(session({
-  secret: process.env.APP_SECRET,
+  secret: masterKey,
   resave: false,
   saveUninitialized: true,
   store: MongoSessionStore.create({
-    mongoUrl: process.env.DB_CONN
+    mongoUrl: mongoUrl
   }),
   cookie: {
     maxAge: 1000 * 60 * 60 * 24 // 1 day
@@ -48,4 +48,4 @@ app.use(oldForm);
 
 app.use('/', webRoutes);
 
-app.listen(process.env.PORT || 8080, () => console.log(`Server started on port ${process.env.PORT || 8080}.`));
+app.listen(port, () => console.log(`Server started on port ${port}.`));
