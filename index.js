@@ -25,9 +25,7 @@ app.use(session({
   secret: masterKey,
   resave: false,
   saveUninitialized: true,
-  store: MongoSessionStore.create({
-    mongoUrl: mongoUrl
-  }),
+  store: MongoSessionStore.create({ mongoUrl }),
   cookie: {
     maxAge: 1000 * 60 * 60 * 24 // 1 day
   }
