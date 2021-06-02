@@ -9,7 +9,7 @@ services:
     networks:
       - node-playground-network
     ports:
-      - "3000:8080"
+      - "8080:8080"
     restart: always
     env_file: .env
     environment:
