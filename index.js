@@ -5,10 +5,9 @@ const session = require('express-session');
 const MongoSessionStore = require('connect-mongo');
 const flash = require('connect-flash');
 const passport = require('passport');
+
 const {port, mongoUrl, masterKey} = require("./config/env")
-
 const oldForm = require('./utils/middleware/oldForm');
-
 const webRoutes = require('./routes/web');
 
 const app = express();
@@ -18,6 +17,9 @@ mongoose.connect(mongoUrl, {
   useUnifiedTopology: true,
   useFindAndModify: false
 });
+
+mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
+mongoose.connection.once('open', () => console.log("Successfully connected to MongoDB!"));
 
 app.use(session({
   secret: masterKey,
